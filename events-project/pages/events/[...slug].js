@@ -13,19 +13,24 @@ function FilteredEventsPage(props) {
 
   const filterData = router.query.slug
 
-  const {data, error} = useSWR('https://nextjs-course-9aba0-default-rtdb.firebaseio.com/events.json');
   useEffect(() => {
-    if(data){
-      const events = []
-      for (const key in data) {
-        events.push({
-          id: key,
-          ...data[key],
-        })
-      }
-      setLoadedEvents(events)
-    }
-  }, [data]) 
+    
+     fetch('https://nextjs-course-9aba0-default-rtdb.firebaseio.com/events.json')
+      .then(res => res.json()).then(data=>{
+          if (data) {
+            const events = [];
+            for (const key in data) {
+              events.push({
+                id: key,
+                ...data[key],
+                
+              });
+            }
+            setLoadedEvents(events);
+          }
+      })
+    
+  }, []) 
 
 
   if(!loadedEvents) {
@@ -80,7 +85,7 @@ function FilteredEventsPage(props) {
     );
 
   }
-  const date = new Date(props.date.year, props.date.month -1)
+  const date = new Date(numYear, numMonth -1)
 
 
   return <Fragment>
