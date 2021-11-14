@@ -14,7 +14,15 @@ function Comments(props) {
   }
 
   function addCommentHandler(commentData) {
-    // send data to API
+    fetch('/api/comments/' + eventId, {
+      method: 'POST',
+      body: JSON.stringify(commentData),
+      headers: {
+        'Content-Type':'application/json'
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 
   return (
