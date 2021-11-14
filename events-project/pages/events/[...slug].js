@@ -5,7 +5,6 @@ import EventList from '../../components/events/event-list'
 import ResultsTitle from '../../components/events/results-title'
 import Button from '../../components/Ui/button'
 import ErrorAlert from '../../components/Ui/error-alert'
-import useSWR from 'swr'
 
 function FilteredEventsPage(props) {
   const [loadedEvents, setLoadedEvents] = useState()
